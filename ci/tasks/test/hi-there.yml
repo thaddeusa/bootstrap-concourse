@@ -6,9 +6,6 @@ image_resource:
   source:
     repository: cgicloudnative/concourse-ubuntu
 inputs:
-  - name: bootstrap-repo
+  - name: bootstrap
 run:
-  path: bootstrap-repo/ci/tasks/hi-there.sh
-
-params:
-  TF_VAR_access_key: ""
+  path: bootstrap/ci/tasks/hi-there.sh
