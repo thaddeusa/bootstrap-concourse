@@ -8,4 +8,4 @@ image_resource:
 inputs:
   - name: bootstrap
 run:
-  path: bootstrap/ci/tasks/hi-there.sh
+  path: bootstrap/ci/tasks/test/hi-there.sh
