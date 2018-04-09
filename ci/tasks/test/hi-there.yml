@@ -1,0 +1,14 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: cgicloudnative/concourse-ubuntu
+inputs:
+  - name: bootstrap-repo
+run:
+  path: bootstrap-repo/ci/tasks/hi-there.sh
+
+params:
+  TF_VAR_access_key: ""

@@ -1,0 +1,46 @@
+resources:
+
+- name: bootstrap
+  type: git
+  source:
+    branch: master
+    uri: git@bitbucket.org:thaddeusa/bootstrap.git
+    private_key: ((bitbucket_private_key))
+
+jobs:
+
+- name: hi-there
+  plan:
+  - get: bootstrap
+  - task: hi-there
+    file: bootstrap/ci/tasks/hi-there.yml
+#    params:
+#      TF_VAR_access_key: ((azure_key_test))
+
+- name: bootstrap-terraform
+  plan:
+  - get: bootstrap
+#    passed: ['hi-there']
+#    trigger: true
+  - task: bootstrap-infra
+    file: bootstrap/ci/tasks/bootstrap-infra.yml
+    params:
+      TF_VAR_subscription_id: ((azure_subscription_id))
+      TF_VAR_client_id: ((azure_client_id))
+      TF_VAR_client_secret: ((azure_client_secret))
+      TF_VAR_tenant_id: ((azure_tenant_id))
+      TF_VAR_access_key: ((azure_storage_key))
+      bosh_pub_key: ((bosh_pub_key))
+
+
+- name: bootstrap-terraform-destroy
+  plan:
+  - get: bootstrap
+  - task: bootstrap-infra-destroy
+    file: bootstrap/ci/tasks/bootstrap-infra-destroy.yml
+    params:
+      TF_VAR_subscription_id: ((azure_subscription_id))
+      TF_VAR_client_id: ((azure_client_id))
+      TF_VAR_client_secret: ((azure_client_secret))
+      TF_VAR_tenant_id: ((azure_tenant_id))
+      TF_VAR_access_key: ((azure_storage_key))
