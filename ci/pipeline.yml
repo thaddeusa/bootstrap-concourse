@@ -4,7 +4,7 @@ resources:
   type: git
   source:
     branch: master
-    uri: git@github.com:thaddeusa/bootstrap-concourse.git
+    uri: https://github.com/thaddeusa/bootstrap-concourse.git
 
 jobs:
 
@@ -12,4 +12,4 @@ jobs:
   plan:
   - get: bootstrap
   - task: hi-there
-    file: bootstrap/ci/tasks/hi-there.yml
+    file: bootstrap/ci/tasks/test/hi-there.yml
