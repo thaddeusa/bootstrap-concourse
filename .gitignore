@@ -2,3 +2,4 @@ pipeline_old.yml
 set_pipeline.sh
 .terraform
 *.tfplan
+tf.sh
